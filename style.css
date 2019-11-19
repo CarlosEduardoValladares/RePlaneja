@@ -4,3 +4,25 @@
     height: 15px;
 
 }
+
+.form-signin{
+    
+    max-width: 330px;
+    margin-top: 10%;
+    background-color: #f8f9fae6;
+
+}
+
+.signin-body{
+
+    background-image: url("imgs/bg-docs.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.index-body{
+
+    background-image: url("imgs/bg-index.jpg");
+    background-size: cover;
+}
