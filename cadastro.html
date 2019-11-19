@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tela de Cadastro</title>
+    <link rel="stylesheet" href="bootstrap4/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="d-flex justify-content-center signin-body">
+    <form class="form-signin border p-5">
+        <h1 class="h3 mb-3 font-weight-normal">Cadastre-se</h1>
+        <label class="sr-only">Nome: </label>
+        <input type="text" id="inputName" class="form-control mb-1" placeholder="Nome" required>
+        <label class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control mb-1" placeholder="Endereço de e-mail" required autofocus>
+        <label class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control mb-1" placeholder="Senha" required>
+        <label class="sr-only">Confirm Password</label>
+        <input type="password" id="inputPasswordConfirm" class="form-control mb-1" placeholder="Corfime a senha" required>
+        <label class="mt-1">Sou professor de: </label>
+        <select class="mb-1">
+          <option value="lpt">Língua Portuguesa</option>
+          <option value="les">Língua Estrangeira</option>
+          <option value="mat">Matemática</option>
+          <option value="qim">Química</option>
+          <option value="fis">Física</option>
+          <option value="bio">Biologia</option>
+          <option value="his">História</option>
+          <option value="geo">Geografia</option>
+          <option value="art">Artes</option>
+          <option value="ger">Geral (Fundamental I)</option>
+        </select>
+        <label class="mt-1">Formação: </label>
+        <select>
+          <option value="nor">Ensino Médio Normal</option>
+          <option value="nrd">Graduando</option>
+          <option value="grd">Graduado</option>
+          <option value="pgd">Pós-Graduado</option>
+          <option value="dct">Doutor</option>
+        </select>
+        <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Cadastar</button>
+    </form>
+</body>
+</html>
