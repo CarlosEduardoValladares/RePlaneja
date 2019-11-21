@@ -7,7 +7,28 @@
 		<link rel="stylesheet" href="bootstrap4/css/bootstrap.css">
 		<link rel="stylesheet" href="style.css">
 		</link>
-		<title></title>
+		<script>
+
+			function upVote(id_post){
+
+				var total = document.getElementById(id_post).innerHTML;
+				total = parseInt(total);
+				total++;
+				document.getElementById(id_post).innerHTML = total;
+
+			}
+
+			function downVote(id_post){
+
+				var total = document.getElementById(id_post).innerHTML;
+				total = parseInt(total);
+				total--;
+				document.getElementById(id_post).innerHTML = total;
+
+			}
+
+		</script>
+		<title>RePlaneja</title>
 	</head>
 	<body class="bg-secondary text-white index-body">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,11 +59,12 @@
 						<label>Autor: </label><a class="ml-1" href="">Pessoa1</a>
 					</div>
 					<div class="col-sm-5 d-flex justify-content-center">
-						<h4><a href="">Título da Postagem 1</a></h4>
+						<h4><a href="post.html?post=post1">Título da Postagem 1</a></h4>
 					</div>
 					<div class="col-sm-5 d-flex justify-content-end">
-						<button class="btn btn-success ml-sm-1">&#11014;</button>
-						<button class="btn btn-danger ml-sm-1">&#11015;</button>
+						<span id="cont_post_1">0</span>
+						<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_1');">&#11014;</button>
+						<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_1');">&#11015;</button>
 						<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
 						<button class="btn btn-danger ml-sm-1">&#128465;</button>
 					</div>
@@ -64,11 +86,12 @@
 						<label>Autor: </label><a class="ml-1" href="">Pessoa2</a>
 					</div>
 					<div class="col-sm-5 d-flex justify-content-center">
-						<h4><a href="">Título da Postagem 2</a></h4>
+						<h4><a href="post.html?post=post2">Título da Postagem 2</a></h4>
 					</div>
 					<div class="col-sm-5 d-flex justify-content-end">
-						<button class="btn btn-success ml-sm-1">&#11014;</button>
-						<button class="btn btn-danger ml-sm-1">&#11015;</button>
+						<span id="cont_post_2">0</span>
+						<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_2');">&#11014;</button>
+						<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_2');">&#11015;</button>
 						<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
 						<button class="btn btn-danger ml-sm-1">&#128465;</button>
 					</div>
@@ -90,11 +113,12 @@
 						<label>Autor: </label><a class="ml-1" href="">Pessoa3</a>
 					</div>
 					<div class="col-sm-5 d-flex justify-content-center">
-						<h4><a href="">Título da Postagem 3</a></h4>
+						<h4><a href="post.html?post=post3">Título da Postagem 3</a></h4>
 					</div>
 					<div class="col-sm-5 d-flex justify-content-end">
-						<button class="btn btn-success ml-sm-1">&#11014;</button>
-						<button class="btn btn-danger ml-sm-1">&#11015;</button>
+						<span id="cont_post_3">0</span>
+						<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_3');">&#11014;</button>
+						<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_3');">&#11015;</button>
 						<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
 						<button class="btn btn-danger ml-sm-1">&#128465;</button>
 					</div>
