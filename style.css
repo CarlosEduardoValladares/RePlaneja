@@ -1,51 +1,73 @@
 .small-icon{
-
+ 
     width: 15px;
     height: 15px;
-
-}
-
-.form-signin{
-    
+  
+ }
+  
+ .form-signin{
+   
     max-width: 330px;
     margin-top: 10%;
     background-color: #f8f9fae6;
-
-}
-
-.signin-body{
-
+  
+ }
+  
+ .signin-body{
+  
     background-image: url("imgs/bg-docs.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-
-}
-
-.index-body{
-
+  
+ }
+  
+ .index-body{
+  
     background-image: url("imgs/bg-index.jpg");
     background-size: cover;
-}
-
-.content {
-
+ }
+  
+ .content {
+  
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 80%;
     color: white;
     margin: auto;
     background-color: #4f4f4f;
-    margin-top: 20px;
     border: 1px solid white;
-    border-radius: 3px;
-}
-
-.post-content {
-
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+ }
+  
+ .post-text {
+  
     padding: 5px 10px;
-}
+ }
+  
+ .description {
+  
+    padding-top: 30px;
+    padding-bottom: 20px;
+ }
+  
+ .tags {
+  
+    display: flex;
+    /*border: 1px solid red;*/
+    margin-top: 50px;
+ }
+  
+ .tag {
+   
+    /*border: 1px solid black;*/
+    border-radius: 15px;
+    padding: 3px 13px;
+    margin: 0 12px;
+    color: #0775ce;
+    background-color: #fffffa;      
+ }
+  
 
-.description {
-
-    padding-bottom: 50px;
-}
+ 
