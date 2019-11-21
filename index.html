@@ -27,6 +27,58 @@
 
 			}
 
+			function orderByMostRecent(){
+
+				var listaPosts = document.getElementsByClassName("postagem");
+				var i;
+				var size = listaPosts.length;
+				var idsMap = [];
+				for (i = 0; i < size; i++){
+
+					var spanPost = listaPosts[i].getElementsByTagName("span");
+					var id = spanPost[0].id;
+					var stringSize = id.length;
+					var lastChar = id.charAt(stringSize-1);
+					idsMap.push( [lastChar, id] );
+
+				}
+
+				idsMap.sort();
+				console.log(idsMap);
+
+			}
+
+			function orderByVote(){
+
+				var listaPosts = document.getElementsByClassName("postagem");
+				var i;
+				var size = listaPosts.length;
+				var indexMap = [];
+				for (i = 0; i < size; i++){
+
+					var spanPost = listaPosts[i].getElementsByTagName("span");
+					var id = spanPost[0].id;
+					var val = spanPost[0].innerText;
+					indexMap.push( [val, i] );
+
+				}
+
+				indexMap.sort();
+
+				var cpyListPosts = listaPosts;
+				console.log(cpyListPosts);
+				for(i = 0; i < size; i++){
+
+					var index = (indexMap[size-1-i][1]);
+					console.log(index);
+					listaPosts[i] = cpyListPosts[index];					
+
+				}
+
+				// document.getElementsByClassName("postagem") = listaPosts;
+
+			}
+
 		</script>
 		<title>RePlaneja</title>
 	</head>
@@ -49,11 +101,11 @@
 				</div>
 				<div class="col-sm-6 d-flex justify-content-end">
 					<label class=" d-flex align-items-end">Ordenar por:</label>
-					<button class="btn btn-primary ml-sm-1">Mais bem avaliados</button>
-					<button class="btn btn-primary ml-sm-1">Mais recentes</button>
+					<button class="btn btn-primary ml-sm-1" onClick="orderByVote();">Mais bem avaliados</button>
+					<button class="btn btn-primary ml-sm-1" onClick="orderByMostRecent();">Mais recentes</button>
 				</div>
 			</div>
-			<div class="border mt-4">
+			<div class="border mt-4 postagem">
 				<div class="row mt-2">
 					<div class="ml-5" class="col-sm-5">
 						<label>Autor: </label><a class="ml-1" href="">Pessoa1</a>
@@ -62,7 +114,7 @@
 						<h4><a href="post.html?post=post1">Título da Postagem 1</a></h4>
 					</div>
 					<div class="col-sm-5 d-flex justify-content-end">
-						<span id="cont_post_1">0</span>
+						<span id="cont_post_1" class="d-flex align-items-center">0</span>
 						<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_1');">&#11014;</button>
 						<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_1');">&#11015;</button>
 						<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
@@ -80,7 +132,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="border mt-4">
+			<div class="border mt-4 postagem">
 				<div class="row mt-2">
 					<div class="ml-5" class="col-sm-5">
 						<label>Autor: </label><a class="ml-1" href="">Pessoa2</a>
@@ -89,7 +141,7 @@
 						<h4><a href="post.html?post=post2">Título da Postagem 2</a></h4>
 					</div>
 					<div class="col-sm-5 d-flex justify-content-end">
-						<span id="cont_post_2">0</span>
+						<span id="cont_post_2" class="d-flex align-items-center">0</span>
 						<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_2');">&#11014;</button>
 						<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_2');">&#11015;</button>
 						<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
@@ -107,7 +159,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="border mt-4">
+			<div class="border mt-4 postagem">
 				<div class="row mt-2">
 					<div class="ml-5" class="col-sm-5">
 						<label>Autor: </label><a class="ml-1" href="">Pessoa3</a>
@@ -116,7 +168,7 @@
 						<h4><a href="post.html?post=post3">Título da Postagem 3</a></h4>
 					</div>
 					<div class="col-sm-5 d-flex justify-content-end">
-						<span id="cont_post_3">0</span>
+						<span id="cont_post_3" class="d-flex align-items-center">0</span>
 						<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_3');">&#11014;</button>
 						<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_3');">&#11015;</button>
 						<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
