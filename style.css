@@ -26,3 +26,26 @@
     background-image: url("imgs/bg-index.jpg");
     background-size: cover;
 }
+
+.content {
+
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    color: white;
+    margin: auto;
+    background-color: #4f4f4f;
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+.post-content {
+
+    padding: 5px 10px;
+}
+
+.description {
+
+    padding-bottom: 50px;
+}
