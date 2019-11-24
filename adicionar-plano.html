@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>Novo Plano</title>
+ 
+<link href="bootstrap4/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+ 
+ </head>
+ <body class="bg-light"> 
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<a class="nav-link font-weight-bold" href="index.html">RePlaneja</a>
+		<div class="collapse navbar-collapse">
+			<a class="nav-link ml-auto" href="signin.html">Login<span class="sr-only">(current)</span></a>
+			<a class="nav-link" href="cadastro.html">Cadastre-se<span class="sr-only">(current)</span></a>
+		</div>
+	</nav>
+   <div class="col-md-8 order-md-1 novo-plano">
+     <h2 class="mb-3">Adicionar Novo Plano</h2>
+     <form class="needs-validation" novalidate>
+       <div class="row">
+         <div class="col-md-6 mb-3">
+           <label>Título</label>
+           <input type="text" class="form-control" placeholder="" value="" required>
+         </div>
+       </div>
+       <div class="mb-3">
+         <label>Descrição</label>
+         <textarea rows="2" type="text" class="form-control" required></textarea>
+       </div>
+ 
+       <div class="mb-3">
+         <label>Conteúdo</label>
+         <textarea rows="8" type="text" class="form-control" required></textarea>
+       </div>
+ 
+       <div class="row">
+         <div class="col-md-5 mb-3">
+           <label>Matéria</label>
+           <select class="custom-select d-block w-100">
+               <option>Escolha...</option>
+               <option>Língua Portuguesa</option>
+               <option>Língua Estrangeira</option>
+               <option>Matemática</option>
+               <option>Química</option>
+               <option>Física</option>
+               <option>Biologia</option>
+               <option>História</option>
+               <option>Geografia</option>
+               <option>Artes</option>
+           </select>
+         </div>
+         <div class="col-md-4 mb-3">
+           <label>Séries-Alvo</label>
+           <select class="custom-select d-block w-100">
+             <option>Escolha...</option>
+             <option>1º ano</option>
+             <option>2º ano</option>
+			 <option>3º ano</option>
+			 <option>4º ano</option>
+			 <option>5º ano</option>
+			 <option>6º ano</option>
+			 <option>7º ano</option>
+			 <option>8º ano</option>
+			 <option>9º ano</option>
+			 
+           </select>
+         </div>
+         <hr class="mb-4">
+         <div class="botao-enviar">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Enviar</button>
+         </div>    
+         </form>
+       </div>
+    </div>
+</body>
+</html>
