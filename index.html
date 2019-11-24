@@ -8,6 +8,14 @@
 		<link rel="stylesheet" href="style.css">
 		</link>
 		<script>
+		
+			function comparar(a, b){
+			
+				a = parseInt(a[0], 10);
+				b = parseInt(b[0], 10);
+				return( a - b );
+			
+			}
 
 			function upVote(id_post){
 
@@ -32,6 +40,7 @@
 				var listaPosts = document.getElementsByClassName("postagem");
 				var i;
 				var size = listaPosts.length;
+				var listaVal = [];
 				var idsMap = [];
 				for (i = 0; i < size; i++){
 
@@ -39,12 +48,12 @@
 					var id = spanPost[0].id;
 					var stringSize = id.length;
 					var lastChar = id.charAt(stringSize-1);
+					listaVal.push(lastChar);
 					idsMap.push( [lastChar, id] );
 
 				}
 
-				idsMap.sort();
-				console.log(idsMap);
+				
 
 			}
 
@@ -53,29 +62,39 @@
 				var listaPosts = document.getElementsByClassName("postagem");
 				var i;
 				var size = listaPosts.length;
+				var listaVal = [];
 				var indexMap = [];
 				for (i = 0; i < size; i++){
 
 					var spanPost = listaPosts[i].getElementsByTagName("span");
 					var id = spanPost[0].id;
 					var val = spanPost[0].innerText;
+					listaVal.push(val);
 					indexMap.push( [val, i] );
 
 				}
 
-				indexMap.sort();
+				indexMap = indexMap.sort(comparar);
 
-				var cpyListPosts = listaPosts;
-				console.log(cpyListPosts);
+				var cpyListPosts = [];
 				for(i = 0; i < size; i++){
 
-					var index = (indexMap[size-1-i][1]);
-					console.log(index);
-					listaPosts[i] = cpyListPosts[index];					
+					cpyListPosts.push(listaPosts[i].innerHTML);				
 
 				}
-
-				// document.getElementsByClassName("postagem") = listaPosts;
+	
+				console.log(indexMap);
+	
+				var iterador = 0;
+				$("#posts").children(".postagem").each(function (){
+				
+					var post = $(this);
+					var index = indexMap[size-1-iterador][1];
+					post.html(cpyListPosts[index]);
+					iterador++;
+				
+				});
+				
 
 			}
 
@@ -105,84 +124,86 @@
 					<button class="btn btn-primary ml-sm-1" onClick="orderByMostRecent();">Mais recentes</button>
 				</div>
 			</div>
-			<div class="border mt-4 postagem">
-				<div class="row mt-2">
-					<div class="ml-5" class="col-sm-5">
-						<label>Autor: </label><a class="ml-1" href="">Pessoa1</a>
+			<div id="posts">
+				<div class="border mt-4 postagem">
+					<div class="row mt-2">
+						<div class="ml-5" class="col-sm-5">
+							<label>Autor: </label><a class="ml-1" href="">Pessoa1</a>
+						</div>
+						<div class="col-sm-5 d-flex justify-content-center">
+							<h4><a href="post.html?post=post1">Título da Postagem 1</a></h4>
+						</div>
+						<div class="col-sm-5 d-flex justify-content-end">
+							<span id="cont_post_1" class="d-flex align-items-center">0</span>
+							<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_1');">&#11014;</button>
+							<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_1');">&#11015;</button>
+							<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
+							<button class="btn btn-danger ml-sm-1">&#128465;</button>
+						</div>
 					</div>
-					<div class="col-sm-5 d-flex justify-content-center">
-						<h4><a href="post.html?post=post1">Título da Postagem 1</a></h4>
-					</div>
-					<div class="col-sm-5 d-flex justify-content-end">
-						<span id="cont_post_1" class="d-flex align-items-center">0</span>
-						<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_1');">&#11014;</button>
-						<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_1');">&#11015;</button>
-						<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
-						<button class="btn btn-danger ml-sm-1">&#128465;</button>
-					</div>
-				</div>
-				<div class="row ml-2 mr-2 mt-2">
-					<div>
-						<p>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas commodo tincidunt ex. Proin sollicitudin velit quis
-							dictum efficitur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam vestibulum neque et nulla scelerisque, et condimentum
-							mauris iaculis. Sed velit urna, aliquet id laoreet volutpat, interdum ut enim. Donec ornare eget justo at sodales. In tempus eleifend nulla non efficitur. Duis
-							consequat tortor lacus, eu hendrerit orci egestas nec. Aliquam vel quam dapibus, eleifend leo ut, fringilla tellus. Praesent mollis ipsum convallis, posuere nisl et,
-							suscipit orci. Mauris id nulla id magna lobortis ornare. Nunc aliquam mollis risus, tempus efficitur eros consequat id.
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="border mt-4 postagem">
-				<div class="row mt-2">
-					<div class="ml-5" class="col-sm-5">
-						<label>Autor: </label><a class="ml-1" href="">Pessoa2</a>
-					</div>
-					<div class="col-sm-5 d-flex justify-content-center">
-						<h4><a href="post.html?post=post2">Título da Postagem 2</a></h4>
-					</div>
-					<div class="col-sm-5 d-flex justify-content-end">
-						<span id="cont_post_2" class="d-flex align-items-center">0</span>
-						<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_2');">&#11014;</button>
-						<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_2');">&#11015;</button>
-						<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
-						<button class="btn btn-danger ml-sm-1">&#128465;</button>
+					<div class="row ml-2 mr-2 mt-2">
+						<div>
+							<p>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas commodo tincidunt ex. Proin sollicitudin velit quis
+								dictum efficitur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam vestibulum neque et nulla scelerisque, et condimentum
+								mauris iaculis. Sed velit urna, aliquet id laoreet volutpat, interdum ut enim. Donec ornare eget justo at sodales. In tempus eleifend nulla non efficitur. Duis
+								consequat tortor lacus, eu hendrerit orci egestas nec. Aliquam vel quam dapibus, eleifend leo ut, fringilla tellus. Praesent mollis ipsum convallis, posuere nisl et,
+								suscipit orci. Mauris id nulla id magna lobortis ornare. Nunc aliquam mollis risus, tempus efficitur eros consequat id.
+							</p>
+						</div>
 					</div>
 				</div>
-				<div class="row ml-2 mr-2 mt-2">
-					<div>
-						<p>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas commodo tincidunt ex. Proin sollicitudin velit quis
-							dictum efficitur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam vestibulum neque et nulla scelerisque, et condimentum
-							mauris iaculis. Sed velit urna, aliquet id laoreet volutpat, interdum ut enim. Donec ornare eget justo at sodales. In tempus eleifend nulla non efficitur. Duis
-							consequat tortor lacus, eu hendrerit orci egestas nec. Aliquam vel quam dapibus, eleifend leo ut, fringilla tellus. Praesent mollis ipsum convallis, posuere nisl et,
-							suscipit orci. Mauris id nulla id magna lobortis ornare. Nunc aliquam mollis risus, tempus efficitur eros consequat id.
-						</p>
+				<div class="border mt-4 postagem">
+					<div class="row mt-2">
+						<div class="ml-5" class="col-sm-5">
+							<label>Autor: </label><a class="ml-1" href="">Pessoa2</a>
+						</div>
+						<div class="col-sm-5 d-flex justify-content-center">
+							<h4><a href="post.html?post=post2">Título da Postagem 2</a></h4>
+						</div>
+						<div class="col-sm-5 d-flex justify-content-end">
+							<span id="cont_post_2" class="d-flex align-items-center">0</span>
+							<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_2');">&#11014;</button>
+							<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_2');">&#11015;</button>
+							<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
+							<button class="btn btn-danger ml-sm-1">&#128465;</button>
+						</div>
+					</div>
+					<div class="row ml-2 mr-2 mt-2">
+						<div>
+							<p>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas commodo tincidunt ex. Proin sollicitudin velit quis
+								dictum efficitur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam vestibulum neque et nulla scelerisque, et condimentum
+								mauris iaculis. Sed velit urna, aliquet id laoreet volutpat, interdum ut enim. Donec ornare eget justo at sodales. In tempus eleifend nulla non efficitur. Duis
+								consequat tortor lacus, eu hendrerit orci egestas nec. Aliquam vel quam dapibus, eleifend leo ut, fringilla tellus. Praesent mollis ipsum convallis, posuere nisl et,
+								suscipit orci. Mauris id nulla id magna lobortis ornare. Nunc aliquam mollis risus, tempus efficitur eros consequat id.
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="border mt-4 postagem">
-				<div class="row mt-2">
-					<div class="ml-5" class="col-sm-5">
-						<label>Autor: </label><a class="ml-1" href="">Pessoa3</a>
+				<div class="border mt-4 postagem">
+					<div class="row mt-2">
+						<div class="ml-5" class="col-sm-5">
+							<label>Autor: </label><a class="ml-1" href="">Pessoa3</a>
+						</div>
+						<div class="col-sm-5 d-flex justify-content-center">
+							<h4><a href="post.html?post=post3">Título da Postagem 3</a></h4>
+						</div>
+						<div class="col-sm-5 d-flex justify-content-end">
+							<span id="cont_post_3" class="d-flex align-items-center">0</span>
+							<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_3');">&#11014;</button>
+							<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_3');">&#11015;</button>
+							<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
+							<button class="btn btn-danger ml-sm-1">&#128465;</button>
+						</div>
 					</div>
-					<div class="col-sm-5 d-flex justify-content-center">
-						<h4><a href="post.html?post=post3">Título da Postagem 3</a></h4>
-					</div>
-					<div class="col-sm-5 d-flex justify-content-end">
-						<span id="cont_post_3" class="d-flex align-items-center">0</span>
-						<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_3');">&#11014;</button>
-						<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_3');">&#11015;</button>
-						<button class="btn btn-warning ml-sm-1">Denunciar &#9888;</button>
-						<button class="btn btn-danger ml-sm-1">&#128465;</button>
-					</div>
-				</div>
-				<div class="row ml-2 mr-2 mt-2">
-					<div>
-						<p>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas commodo tincidunt ex. Proin sollicitudin velit quis
-							dictum efficitur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam vestibulum neque et nulla scelerisque, et condimentum
-							mauris iaculis. Sed velit urna, aliquet id laoreet volutpat, interdum ut enim. Donec ornare eget justo at sodales. In tempus eleifend nulla non efficitur. Duis
-							consequat tortor lacus, eu hendrerit orci egestas nec. Aliquam vel quam dapibus, eleifend leo ut, fringilla tellus. Praesent mollis ipsum convallis, posuere nisl et,
-							suscipit orci. Mauris id nulla id magna lobortis ornare. Nunc aliquam mollis risus, tempus efficitur eros consequat id.
-						</p>
+					<div class="row ml-2 mr-2 mt-2">
+						<div>
+							<p>Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas commodo tincidunt ex. Proin sollicitudin velit quis
+								dictum efficitur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam vestibulum neque et nulla scelerisque, et condimentum
+								mauris iaculis. Sed velit urna, aliquet id laoreet volutpat, interdum ut enim. Donec ornare eget justo at sodales. In tempus eleifend nulla non efficitur. Duis
+								consequat tortor lacus, eu hendrerit orci egestas nec. Aliquam vel quam dapibus, eleifend leo ut, fringilla tellus. Praesent mollis ipsum convallis, posuere nisl et,
+								suscipit orci. Mauris id nulla id magna lobortis ornare. Nunc aliquam mollis risus, tempus efficitur eros consequat id.
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
