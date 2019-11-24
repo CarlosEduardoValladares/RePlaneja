@@ -5,20 +5,36 @@
     <title>Tela de Cadastro</title>
     <link rel="stylesheet" href="bootstrap4/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
+	<script src="jquery.js"></script>
+	<script>
+	
+		var cadastro = [];
+	
+		$(function(){
+			$("form").submit(function(event){
+			
+				var infoArray = $(this).serializeArray();
+				cadastro.push(Object.assign({}, infoArray));
+				event.preventDefault();
+			
+			});	
+		});
+	
+	</script>
   </head>
   <body class="d-flex justify-content-center signin-body">
-    <form class="form-signin border p-5">
+    <form class="form-signin border p-5" >
         <h1 class="h3 mb-3 font-weight-normal">Cadastre-se</h1>
         <label class="sr-only">Nome: </label>
-        <input type="text" id="inputName" class="form-control mb-1" placeholder="Nome" required autofocus>
+        <input type="text" id="inputName" name="nome" class="form-control mb-1" placeholder="Nome"  autofocus>
         <label class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control mb-1" placeholder="Endereço de e-mail" required>
+        <input type="email" id="inputEmail" name="email" class="form-control mb-1" placeholder="Endereço de e-mail" >
         <label class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control mb-1" placeholder="Senha" required>
+        <input type="password" id="inputPassword" name="senha" class="form-control mb-1" placeholder="Senha" >
         <label class="sr-only">Confirm Password</label>
-        <input type="password" id="inputPasswordConfirm" class="form-control mb-1" placeholder="Corfime a senha" required>
+        <input type="password" id="inputPasswordConfirm" name="confirmacao" class="form-control mb-1" placeholder="Corfime a senha" >
         <label class="mt-1">Sou professor de: </label>
-        <select class="mb-1">
+        <select class="mb-1" name="area">
           <option value="lpt">Língua Portuguesa</option>
           <option value="les">Língua Estrangeira</option>
           <option value="mat">Matemática</option>
@@ -31,14 +47,14 @@
           <option value="ger">Geral (Fundamental I)</option>
         </select>
         <label class="mt-1">Formação: </label>
-        <select>
+        <select name="formacao">
           <option value="nor">Ensino Médio Normal</option>
           <option value="nrd">Graduando</option>
           <option value="grd">Graduado</option>
           <option value="pgd">Pós-Graduado</option>
           <option value="dct">Doutor</option>
         </select>
-        <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Cadastar</button>
+        <button id="sendForm" class="btn btn-lg btn-primary btn-block mt-3" type="submit">Cadastar</button>
     </form>
 </body>
 </html>
