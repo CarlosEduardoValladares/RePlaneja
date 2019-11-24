@@ -35,6 +35,29 @@
 				document.getElementById(id_post).innerHTML = total;
 
 			}
+			
+			function denunciar(id_post){
+			
+				var answer = confirm("Deseja denunciar esta postagem?");
+				if(answer == true){
+				
+					alert("Sua denúncia foi enviada para revisão");
+				
+				}
+			
+			}
+			
+			function excluir(id_post){
+			
+				var answer = confirm("Deseja excluir esta postagem?");
+				if(answer == true){
+				
+					var element = $(document.getElementById(id_post));
+					element.parents(".postagem").remove();
+				
+				}
+			
+			}
 
 			function orderByMostRecent(){
 
@@ -126,6 +149,10 @@
 						allBeforeUpId +
 						i +
 						allBeforeDownId +
+						i +
+						allBeforeReport +
+						i +
+						allBeforeDelete +
 						i +
 						allBeforeDescription +
 						this.descricao +
