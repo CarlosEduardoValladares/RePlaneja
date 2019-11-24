@@ -40,20 +40,34 @@
 				var listaPosts = document.getElementsByClassName("postagem");
 				var i;
 				var size = listaPosts.length;
-				var listaVal = [];
-				var idsMap = [];
+				var indexMap = [];
 				for (i = 0; i < size; i++){
 
 					var spanPost = listaPosts[i].getElementsByTagName("span");
 					var id = spanPost[0].id;
 					var stringSize = id.length;
 					var lastChar = id.charAt(stringSize-1);
-					listaVal.push(lastChar);
-					idsMap.push( [lastChar, id] );
+					indexMap.push( [lastChar, i] );
 
 				}
 
+				indexMap.sort(comparar);
+				console.log(indexMap); 
 				
+				var cpyListPosts = [];
+				for(i = 0; i < size; i++){
+					cpyListPosts.push(listaPosts[i].innerHTML);	
+				}
+	
+				var iterador = 0;
+				$("#posts").children(".postagem").each(function (){
+				
+					var post = $(this);
+					var index = indexMap[iterador][1];
+					post.html(cpyListPosts[index]);
+					iterador++;
+				
+				});
 
 			}
 
@@ -78,12 +92,8 @@
 
 				var cpyListPosts = [];
 				for(i = 0; i < size; i++){
-
-					cpyListPosts.push(listaPosts[i].innerHTML);				
-
+					cpyListPosts.push(listaPosts[i].innerHTML);
 				}
-	
-				console.log(indexMap);
 	
 				var iterador = 0;
 				$("#posts").children(".postagem").each(function (){
