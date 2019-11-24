@@ -44,7 +44,7 @@ var allBeforeSpanId = "</a></h4> </div> <div class=\"col-sm-5 d-flex justify-con
 var allBeforeUpId = "\" class=\"d-flex align-items-center\">0</span> <button class=\"btn btn-success ml-sm-1\" onClick=\"upVote('cont_post_";
 var allBeforeDownId = "');\">&#11014;</button> <button class=\"btn btn-danger ml-sm-1\" onClick=\"downVote('cont_post_";
 var allBeforeReport = "');\">&#11015;</button> <button class=\"btn btn-warning ml-sm-1\" onClick=\"denunciar('cont_post_";
-var allBeforeDelete = "');\">Denunciar &#9888;</button>	<button class=\"btn btn-danger ml-sm-1\" onClick=\"excluir('cont_post_";
+var allBeforeDelete = "');\">Denunciar &#9888;</button>	<button class=\"btn btn-danger btn-excluir ml-sm-1\" onClick=\"excluir('cont_post_";
 var allBeforeDescription = "');\">Excluir &#128465;</button>		</div>	</div>	<div class=\"row ml-2 mr-2 mt-2\">		<div>			<p>Descrição: ";
 var stringEnd = "</p> </div> </div> </div>";
 
@@ -67,7 +67,7 @@ var stringEnd = "</p> </div> </div> </div>";
 			<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_*NumPost*');">&#11014;</button>
 			<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_*NumPost*');">&#11015;</button>
 			<button class="btn btn-warning ml-sm-1" onClick="denunciar('cont_post_*NumPost*');">Denunciar &#9888;</button>
-			<button class="btn btn-danger ml-sm-1" onClick="excluir('cont_post_*NumPost*');">Excluir &#128465;</button>
+			<button class="btn btn-danger ml-sm-1 btn-exluir" onClick="excluir('cont_post_*NumPost*');">Excluir &#128465;</button>
 		</div>
 	</div>
 	<div class="row ml-2 mr-2 mt-2">

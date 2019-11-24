@@ -58,6 +58,13 @@
 				}
 			
 			}
+			
+			function admin(){
+			
+				$(".btn-excluir").show();
+				return("Vendo página como Admin");
+			
+			}
 
 			function orderByMostRecent(){
 
@@ -161,7 +168,10 @@
 					);
 					i++;
 				
-				});			
+				});	
+
+				$(".btn-excluir").hide();
+				
 			});
 
 		</script>
