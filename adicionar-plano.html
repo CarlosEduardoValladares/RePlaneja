@@ -1,11 +1,25 @@
 <!doctype html>
 <html>
  <head>
-   <meta charset="utf-8">
-   <title>Novo Plano</title>
- 
-<link href="bootstrap4/css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+	<meta charset="utf-8">
+	<title>Novo Plano</title>
+	<link href="bootstrap4/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<script src="jquery.js"></script>
+	<script>
+		var plano = [];
+	
+		$(function(){
+			$("form").submit(function(event){
+			
+				var infoArray = $(this).serializeArray();
+				plano.push(Object.assign({}, infoArray));
+				$(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
+				event.preventDefault();
+			
+			});	
+		});
+	</script>
  
  </head>
  <body class="bg-light"> 
@@ -22,48 +36,49 @@
        <div class="row">
          <div class="col-md-6 mb-3">
            <label>Título</label>
-           <input type="text" class="form-control" placeholder="" value="" required>
+           <input type="text" name="titulo" class="form-control" placeholder="" required>
          </div>
        </div>
        <div class="mb-3">
          <label>Descrição</label>
-         <textarea rows="2" type="text" class="form-control" required></textarea>
+         <textarea rows="2" name="descricao" type="text" class="form-control" required></textarea>
        </div>
  
        <div class="mb-3">
          <label>Conteúdo</label>
-         <textarea rows="8" type="text" class="form-control" required></textarea>
+         <textarea rows="8" name="conteudo" type="text" class="form-control" required></textarea>
        </div>
  
        <div class="row">
          <div class="col-md-5 mb-3">
            <label>Matéria</label>
-           <select class="custom-select d-block w-100">
-               <option>Escolha...</option>
-               <option>Língua Portuguesa</option>
-               <option>Língua Estrangeira</option>
-               <option>Matemática</option>
-               <option>Química</option>
-               <option>Física</option>
-               <option>Biologia</option>
-               <option>História</option>
-               <option>Geografia</option>
-               <option>Artes</option>
+           <select name="materia" class="custom-select d-block w-100">
+			   <option>Escolha...</option>
+			   <option value="lpt">Língua Portuguesa</option>
+			   <option value="les">Língua Estrangeira</option>
+			   <option value="mat">Matemática</option>
+   			   <option value="qim">Química</option>
+			   <option value="fis">Física</option>
+			   <option value="bio">Biologia</option>
+			   <option value="his">História</option>
+			   <option value="geo">Geografia</option>
+			   <option value="art">Artes</option>
+			   <option value="ger">Geral (Fundamental I)</option>
            </select>
          </div>
          <div class="col-md-4 mb-3">
            <label>Série-Alvo</label>
-           <select class="custom-select d-block w-100">
+           <select name="ano" class="custom-select d-block w-100">
              <option>Escolha...</option>
-             <option>1º ano</option>
-             <option>2º ano</option>
-			 <option>3º ano</option>
-			 <option>4º ano</option>
-			 <option>5º ano</option>
-			 <option>6º ano</option>
-			 <option>7º ano</option>
-			 <option>8º ano</option>
-			 <option>9º ano</option>
+             <option value="1">1º ano</option>
+             <option value="2">2º ano</option>
+			 <option value="3">3º ano</option>
+			 <option value="4">4º ano</option>
+			 <option value="5">5º ano</option>
+			 <option value="6">6º ano</option>
+			 <option value="7">7º ano</option>
+			 <option value="8">8º ano</option>
+			 <option value="9">9º ano</option>
 			 
            </select>
          </div>
