@@ -69,5 +69,21 @@
     background-color: #fffffa;      
  }
   
+.novo-plano {
 
+   display: flex;
+   flex-direction: column;
+   margin: auto;
+   margin-top: 100px;
+}
  
+textarea {
+
+   resize: none;
+}
+
+.botao-enviar {
+
+   width: 50%;
+   margin: 40px auto;
+}
