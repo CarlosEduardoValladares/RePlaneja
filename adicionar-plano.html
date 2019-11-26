@@ -8,23 +8,40 @@
 	<script src="jquery.js"></script>
 	<script>
 		var plano = [];
-	
+
 		$(function(){
 			$("form").submit(function(event){
-			
+
 				var infoArray = $(this).serializeArray();
-				plano.push(Object.assign({}, infoArray));
+        var obj = {};
+
+        $.each(infoArray, function(_, kv){
+
+          if(obj.hasOwnProperty(kv.name)){
+
+            obj[kv.name] = $.makeArray(obj[kv.name]);
+            obj[kv.name].push(kv.name);
+
+          } else {
+
+            obj[kv.name] = kv.value;
+
+          }
+
+        });
+
+				plano.push(obj);
 				$(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
 				event.preventDefault();
 
-				localStorage.setItem("novoPlano", JSON.stringify(infoArray));
-			
-			});	
+				localStorage.setItem("novoPlano", JSON.stringify(obj));
+
+			});
 		});
 	</script>
- 
+
  </head>
- <body class="bg-light"> 
+ <body class="bg-light">
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
 		<a class="nav-link font-weight-bold" href="index.html">RePlaneja</a>
 		<div class="collapse navbar-collapse">
@@ -35,6 +52,7 @@
    <div class="col-md-8 order-md-1 novo-plano">
      <h2 class="mb-3">Adicionar Novo Plano</h2>
      <form class="needs-validation" novalidate>
+       <input type="text" hidden name="autor" value="pessoaB"></input>
        <div class="row">
          <div class="col-md-6 mb-3">
            <label>Título</label>
@@ -45,12 +63,12 @@
          <label>Descrição</label>
          <textarea rows="2" name="descricao" type="text" class="form-control" required></textarea>
        </div>
- 
+
        <div class="mb-3">
          <label>Conteúdo</label>
          <textarea rows="8" name="conteudo" type="text" class="form-control" required></textarea>
        </div>
- 
+
        <div class="row">
          <div class="col-md-5 mb-3">
            <label>Matéria</label>
@@ -70,24 +88,23 @@
          </div>
          <div class="col-md-4 mb-3">
            <label>Série-Alvo</label>
-           <select name="ano" class="custom-select d-block w-100">
+           <select name="serie" class="custom-select d-block w-100">
              <option>Escolha...</option>
              <option value="1">1º ano</option>
              <option value="2">2º ano</option>
-			 <option value="3">3º ano</option>
-			 <option value="4">4º ano</option>
-			 <option value="5">5º ano</option>
-			 <option value="6">6º ano</option>
-			 <option value="7">7º ano</option>
-			 <option value="8">8º ano</option>
-			 <option value="9">9º ano</option>
-			 
+      			 <option value="3">3º ano</option>
+      			 <option value="4">4º ano</option>
+      			 <option value="5">5º ano</option>
+      			 <option value="6">6º ano</option>
+      			 <option value="7">7º ano</option>
+      			 <option value="8">8º ano</option>
+      			 <option value="9">9º ano</option>
            </select>
          </div>
          <hr class="mb-4">
          <div class="botao-enviar">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Enviar</button>
-         </div>    
+         </div>
          </form>
        </div>
     </div>

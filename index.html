@@ -9,15 +9,15 @@
 		<link rel="stylesheet" href="style.css">
 		</link>
 		<script>
-		
+
 			var search = [];
-		
+
 			function comparar(a, b){
-			
+
 				a = parseInt(a[0], 10);
 				b = parseInt(b[0], 10);
 				return( a - b );
-			
+
 			}
 
 			function upVote(id_post){
@@ -37,35 +37,35 @@
 				document.getElementById(id_post).innerHTML = total;
 
 			}
-			
+
 			function denunciar(id_post){
-			
+
 				var answer = confirm("Deseja denunciar esta postagem?");
 				if(answer == true){
-				
+
 					alert("Sua denúncia foi enviada para revisão");
-				
+
 				}
-			
+
 			}
-			
+
 			function excluir(id_post){
-			
+
 				var answer = confirm("Deseja excluir esta postagem?");
 				if(answer == true){
-				
+
 					var element = $(document.getElementById(id_post));
 					element.parents(".postagem").remove();
-				
+
 				}
-			
+
 			}
-			
+
 			function admin(){
-			
+
 				$(".btn-excluir").show();
 				return("Vendo página como Admin");
-			
+
 			}
 
 			function orderByMostRecent(){
@@ -84,21 +84,21 @@
 
 				}
 
-				indexMap.sort(comparar); 
-				
+				indexMap.sort(comparar);
+
 				var cpyListPosts = [];
 				for(i = 0; i < size; i++){
-					cpyListPosts.push(listaPosts[i].innerHTML);	
+					cpyListPosts.push(listaPosts[i].innerHTML);
 				}
-	
+
 				var iterador = 0;
 				$("#posts").children(".postagem").each(function (){
-				
+
 					var post = $(this);
 					var index = indexMap[iterador][1];
 					post.html(cpyListPosts[index]);
 					iterador++;
-				
+
 				});
 
 			}
@@ -126,39 +126,48 @@
 				for(i = 0; i < size; i++){
 					cpyListPosts.push(listaPosts[i].innerHTML);
 				}
-	
+
 				var iterador = 0;
 				$("#posts").children(".postagem").each(function (){
-				
+
 					var post = $(this);
 					var index = indexMap[size-1-iterador][1];
 					post.html(cpyListPosts[index]);
 					iterador++;
-				
+
 				});
 
 			}
 
 			$(function(){
 
+				var posts = []
+				$.each((postsList.posts), function(){
+
+					posts.push(this);
+
+				});
+
+				var pĺano;
+
 				if(localStorage.getItem("novoPlano") != null){
 
-					var plano = localStorage.getItem("novoPlano");
-					plano = JSON.parse(plano);
+					var conteudo = localStorage.getItem("novoPlano");
+					plano = JSON.parse(conteudo);
+					posts.push(plano);
 
-				}
-			
-				var posts = $(postsList.posts);
-				posts = (Object.keys(posts).map(function(key){return[Number(key), posts[key]]}));
-					
-				posts.push(plano);
+				}				
+
+				posts = $(Object.assign({}, posts));
+				posts = posts[0];
+
 				console.log(posts);
 
 				var i = 1;
-				posts.each(function(){
-				
+				$.each(posts, function(){
+
 					$("#posts").append(
-					
+
 						allBeforeName +
 						this.autor +
 						allBeforePostNumber +
@@ -178,33 +187,33 @@
 						allBeforeDescription +
 						this.descricao +
 						stringEnd
-					
+
 					);
 					i++;
-				
-				});	
+
+				});
 
 				$(".btn-excluir").hide();
-				
+
 				$("form").submit(function(event){
-			
+
 					var infoArray = $(this).serializeArray();
 					var queryString = infoArray[0].value;
-					
+
 					$("p").css("text-decoration", "");
 					$("h4").css("text-decoration", "");
-					
+
 					$("p:contains('" + queryString + "')").css(
 						"text-decoration", "underline dotted"
 					);
 					$("h4:contains('" + queryString + "')").css(
 						"text-decoration", "underline dotted"
-					);	
-					
+					);
+
 					event.preventDefault();
-			
-				});	
-				
+
+				});
+
 			});
 
 		</script>
@@ -234,7 +243,7 @@
 				</div>
 			</div>
 			<div id="posts">
-				
+
 			</div>
 		</div>
 	</body>

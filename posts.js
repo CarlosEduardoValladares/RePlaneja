@@ -5,7 +5,7 @@ var postsList = JSON.parse('{"posts":[{"autor":"PessoaX","titulo":"Postagem 1","
 {
 
 	"posts": [
-	
+
 		{
 			"autor": "PessoaX",
 			"titulo": "Postagem 1",
@@ -13,7 +13,7 @@ var postsList = JSON.parse('{"posts":[{"autor":"PessoaX","titulo":"Postagem 1","
 			"materia": "foo",
 			"serie": "bar"
 		},
-		
+
 		{
 			"autor": "PessoaY",
 			"titulo": "Postagem 2",
@@ -21,7 +21,7 @@ var postsList = JSON.parse('{"posts":[{"autor":"PessoaX","titulo":"Postagem 1","
 			"materia": "foo",
 			"serie": "bar"
 		},
-		
+
 		{
 			"autor": "PessoaZ",
 			"titulo": "Postagem 3",
@@ -29,9 +29,9 @@ var postsList = JSON.parse('{"posts":[{"autor":"PessoaX","titulo":"Postagem 1","
 			"materia": "foo",
 			"serie": "bar"
 		}
-	
+
 	]
-	
+
 }
 
 */
