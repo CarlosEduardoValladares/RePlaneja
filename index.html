@@ -140,8 +140,20 @@
 			}
 
 			$(function(){
+
+				if(localStorage.getItem("novoPlano") != null){
+
+					var plano = localStorage.getItem("novoPlano");
+					plano = JSON.parse(plano);
+
+				}
 			
 				var posts = $(postsList.posts);
+				posts = (Object.keys(posts).map(function(key){return[Number(key), posts[key]]}));
+					
+				posts.push(plano);
+				console.log(posts);
+
 				var i = 1;
 				posts.each(function(){
 				
