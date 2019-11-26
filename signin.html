@@ -6,20 +6,55 @@
     <link rel="stylesheet" href="bootstrap4/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
 	<script src="jquery.js"></script>
+  <script src="cadastros.js"></script>
 	<script>
-	
-		var login = [];
-	
-		$(function(){
-			$("form").submit(function(event){
-			
-				var infoArray = $(this).serializeArray();
-				login.push(Object.assign({}, infoArray));
-				event.preventDefault();
-			
-			});	
-		});
-	
+
+  $(function(){
+    $("form").submit(function(event){
+
+      var infoArray = $(this).serializeArray();
+      var obj = {};
+
+      $.each(infoArray, function(_, kv){
+
+        if(obj.hasOwnProperty(kv.name)){
+
+          obj[kv.name] = $.makeArray(obj[kv.name]);
+          obj[kv.name].push(kv.name);
+
+        } else {
+
+          obj[kv.name] = kv.value;
+
+        }
+
+      });
+
+      var cadastros = JSON.parse(localStorage.getItem("cadastros"));
+      cadastros = cadastros["cadastros"];
+
+      var loginSuccess = false;
+      $.each(cadastros, function(){
+
+        if(this["email"] == obj["email"] && this["senha"] == obj["senha"]){
+          localStorage.setItem("login", [1, obj["email"]]);
+          loginSuccess = true;
+          window.location.href = "index.html";
+        }
+
+      });
+
+      if(!loginSuccess){
+
+        alert("Usuário inexistente ou Senha errada");
+
+      }
+
+      event.preventDefault();
+
+    });
+  });
+
 	</script>
   </head>
   <body class="text-center d-flex justify-content-center signin-body">
@@ -28,7 +63,7 @@
         <label for="inputEmail" class="sr-only" >Email address</label>
         <input type="email" id="inputEmail" name="email" class="form-control mb-1" placeholder="Endereço de e-mail" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="email" class="form-control mb-1" placeholder="Senha" required>
+        <input type="password" id="inputPassword" name="senha" class="form-control mb-1" placeholder="Senha" required>
         <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Log in</button>
     </form>
 </body>
