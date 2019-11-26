@@ -142,6 +142,7 @@
 			$(function(){
 
 				var posts = []
+				var postsList = JSON.parse(localStorage.getItem("posts"));
 				$.each((postsList.posts), function(){
 
 					posts.push(this);
@@ -156,7 +157,7 @@
 					plano = JSON.parse(conteudo);
 					posts.push(plano);
 
-				}				
+				}
 
 				posts = $(Object.assign({}, posts));
 				posts = posts[0];

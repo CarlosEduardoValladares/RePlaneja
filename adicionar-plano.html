@@ -7,7 +7,6 @@
 	<link rel="stylesheet" href="style.css">
 	<script src="jquery.js"></script>
 	<script>
-		var plano = [];
 
 		$(function(){
 			$("form").submit(function(event){
@@ -30,11 +29,10 @@
 
         });
 
-				plano.push(obj);
 				$(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
-				event.preventDefault();
+        localStorage.setItem("novoPlano", JSON.stringify(obj));
 
-				localStorage.setItem("novoPlano", JSON.stringify(obj));
+				event.preventDefault();				
 
 			});
 		});
