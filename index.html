@@ -5,10 +5,10 @@
 		<script src="jquery.js"></script>
 		<script src="bootstrap4/js/bootstrap.js"></script>
 		<script>
-			var allBeforeName = "<div class=\"border mt-4 postagem\"> <div class=\"row mt-2\"> <div class=\"ml-5\" class=\"col-sm-5\"> <label>Autor:</label><a class=\"ml-1\" href=\"\">";
-			var allBeforePostNumber = "</a> </div> <div class=\"col-sm-5 d-flex justify-content-center\"> <h4><a href=\"post.html?post=post";
+			var allBeforeName = "<div class=\"border mt-4 postagem\"> <div class=\"row mt-2 justify-content-center\"> <div class=\"ml-5 col-sm-3\" class=\"col-sm-3\"> <label>Autor:</label><a class=\"ml-1\" href=\"\">";
+			var allBeforePostNumber = "</a> </div> <div class=\"col-sm-3 d-flex\"> <h4><a href=\"post.html?post=post";
 			var allBeforePostTitle = "\">";
-			var allBeforeSpanId = "</a></h4> </div> <div class=\"col-sm-5 d-flex justify-content-end\"> <span id=\"cont_post_";
+			var allBeforeSpanId = "</a></h4> </div> <div class=\"col-sm-3 d-flex justify-content-end ml-auto mr-2\"> <span id=\"cont_post_";
 			var allBeforeUpId = "\" class=\"d-flex align-items-center\">0</span> <button class=\"btn btn-success ml-sm-1\" onClick=\"upVote('cont_post_";
 			var allBeforeDownId = "');\">&#11014;</button> <button class=\"btn btn-danger ml-sm-1\" onClick=\"downVote('cont_post_";
 			var allBeforeReport = "');\">&#11015;</button> <button class=\"btn btn-warning ml-sm-1\" onClick=\"denunciar('cont_post_";
@@ -19,14 +19,14 @@
 			/* Modelo de Postagem:
 
 			<div class="border mt-4 postagem">
-				<div class="row mt-2">
-					<div class="ml-5" class="col-sm-5">
+				<div class="row mt-2 justify-content-center">
+					<div class="ml-5" class="col-sm-3">
 						<label>Autor:</label><a class="ml-1" href="">*NomePessoa*</a>
 					</div>
-					<div class="col-sm-5 d-flex justify-content-center">
+					<div class="col-sm-3 d-flex justify-content-center">
 						<h4><a href="post.html?post=post*NumPost*">*TituloPost*</a></h4>
 					</div>
-					<div class="col-sm-5 d-flex justify-content-end">
+					<div class="col-sm-3 d-flex justify-content-end ml-auto mr-2">
 						<span id="cont_post_*numPost*" class="d-flex align-items-center">0</span>
 						<button class="btn btn-success ml-sm-1" onClick="upVote('cont_post_*NumPost*');">&#11014;</button>
 						<button class="btn btn-danger ml-sm-1" onClick="downVote('cont_post_*NumPost*');">&#11015;</button>
