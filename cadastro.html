@@ -37,11 +37,14 @@
 
         });
 
+        console.log(obj);
 				$(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
 
         var cadastros = JSON.parse(localStorage.getItem("cadastros"));
         console.log(cadastros);
         cadastros["cadastros"].push(obj);
+
+        cadastros = JSON.stringify(cadastros);
 
         localStorage.setItem("cadastros", cadastros);
 
