@@ -9,7 +9,6 @@
 	<script>
 
   var login = localStorage.getItem("login");
-  console.log(login);
 
   if( login[0] == 0){
 
@@ -20,6 +19,23 @@
 
 		$(function(){
 
+      var cadastros = JSON.parse(localStorage.getItem("cadastros"));
+
+      var start = login.indexOf(",");
+      start++;
+
+      var end = login.length;
+      var email = login.substring(start, end);
+
+      var autor;
+      $.each(cadastros["cadastros"], function(){
+
+        if(this["email"] == email){
+          autor = this["nome"];
+        }
+
+      });
+
       if( login[0] == 1){
 
         $(".login-link").html("Log Out");
@@ -27,7 +43,7 @@
 
       }
 
-      $(".autor").val(login[0]);
+      $(".autor").val(autor);
 
 			$("form").submit(function(event){
 
@@ -49,14 +65,11 @@
 
         });
 
-        console.log(obj);
-
-				$(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
-
         var posts = JSON.parse(localStorage.getItem("posts"));
         posts["posts"].push(obj);
 
         localStorage.setItem("posts", JSON.stringify(posts));
+        $(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
 
 				event.preventDefault();
 
