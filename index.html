@@ -141,6 +141,13 @@
 
 			$(function(){
 
+				if(localStorage.getItem("login")[0] == 1){
+
+	        $(".login-link").html("Log Out");
+					$(".cadastro-link").remove();
+
+	      }
+
 				var posts = []
 				var postsList = JSON.parse(localStorage.getItem("posts"));
 				$.each((postsList.posts), function(){
@@ -225,11 +232,11 @@
 			<a class="nav-link font-weight-bold" href="index.html">RePlaneja</a>
 			<div class="collapse navbar-collapse">
 				<form class="form-inline ml-auto">
-					<input name="searchString" class="form-control mr-sm-3 input-xxlarge" type="search" placeholder="Search" aria-label="Search">
+					<input name="searchString" class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
 					<button class="btn btn-outline-success mr-sm-2" type="submit">Search</button>
 				</form>
-				<a class="nav-link" href="signin.html">Login<span class="sr-only">(current)</span></a>
-				<a class="nav-link" href="cadastro.html">Cadastre-se<span class="sr-only">(current)</span></a>
+				<a class="nav-link login-link" href="signin.html">Login</a>
+				<a class="nav-link cadastro-link" href="cadastro.html">Cadastre-se</a>
 			</div>
 		</nav>
 		<div class="container bg-dark mt-5 pt-1 pb-1 border rounded">

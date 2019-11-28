@@ -8,7 +8,22 @@
 	<script src="jquery.js"></script>
 	<script>
 
+  if( localStorage.getItem("login")[0] == 0){
+
+    alert("É preciso estar logado para enviar um plano");
+    window.location.href = "index.html";
+
+  }
+
 		$(function(){
+
+      if( localStorage.getItem("login")[0] == 1){
+
+        $(".login-link").html("Log Out");
+        $(".cadastro-link").remove();
+
+      }
+
 			$("form").submit(function(event){
 
 				var infoArray = $(this).serializeArray();
@@ -32,7 +47,7 @@
 				$(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
         localStorage.setItem("novoPlano", JSON.stringify(obj));
 
-				event.preventDefault();				
+				event.preventDefault();
 
 			});
 		});
@@ -43,8 +58,8 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
 		<a class="nav-link font-weight-bold" href="index.html">RePlaneja</a>
 		<div class="collapse navbar-collapse">
-			<a class="nav-link ml-auto" href="signin.html">Login<span class="sr-only">(current)</span></a>
-			<a class="nav-link" href="cadastro.html">Cadastre-se<span class="sr-only">(current)</span></a>
+			<a class="nav-link ml-auto login-link" href="signin.html">Login</a>
+			<a class="nav-link cadastro-link" href="cadastro.html">Cadastre-se</a>
 		</div>
 	</nav>
    <div class="col-md-8 order-md-1 novo-plano">
