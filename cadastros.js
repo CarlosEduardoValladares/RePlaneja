@@ -26,5 +26,3 @@ localStorage.setItem("cadastros", '{"cadastros":[{"nome": "Professor Padrão da 
 }
 
 */
-
-localStorage.setItem("login", [0, null]);

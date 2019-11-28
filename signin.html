@@ -10,6 +10,9 @@
 	<script>
 
   $(function(){
+
+    console.log(localStorage.getItem("login")[0]);
+
     $("form").submit(function(event){
 
       var infoArray = $(this).serializeArray();
@@ -29,6 +32,12 @@
         }
 
       });
+
+      if( localStorage.getItem("login")[0] == 0){
+
+        localStorage.setItem("login", [0, null]);
+
+      }
 
       var cadastros = JSON.parse(localStorage.getItem("cadastros"));
       cadastros = cadastros["cadastros"];
@@ -57,8 +66,15 @@
 
 	</script>
   </head>
-  <body class="text-center d-flex justify-content-center signin-body">
-    <form class="form-signin border p-5">
+  <body class="text-center justify-content-center signin-body">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+  		<a class="nav-link font-weight-bold" href="index.html">RePlaneja</a>
+  		<div class="collapse navbar-collapse">
+  			<a class="nav-link ml-auto" href="signin.html">Login<span class="sr-only">(current)</span></a>
+  			<a class="nav-link" href="cadastro.html">Cadastre-se<span class="sr-only">(current)</span></a>
+  		</div>
+  	</nav>
+    <form class="form-signin border p-5 ml-auto mr-auto">
         <h1 class="h3 mb-3 font-weight-normal">Faça Login</h1>
         <label for="inputEmail" class="sr-only" >Email address</label>
         <input type="email" id="inputEmail" name="email" class="form-control mb-1" placeholder="Endereço de e-mail" required autofocus>
