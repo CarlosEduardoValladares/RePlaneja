@@ -8,7 +8,10 @@
 	<script src="jquery.js"></script>
 	<script>
 
-  if( localStorage.getItem("login")[0] == 0){
+  var login = localStorage.getItem("login");
+  console.log(login);
+
+  if( login[0] == 0){
 
     alert("É preciso estar logado para enviar um plano");
     window.location.href = "signin.html";
@@ -17,12 +20,14 @@
 
 		$(function(){
 
-      if( localStorage.getItem("login")[0] == 1){
+      if( login[0] == 1){
 
         $(".login-link").html("Log Out");
         $(".cadastro-link").remove();
 
       }
+
+      $(".autor").val(login[0]);
 
 			$("form").submit(function(event){
 
@@ -47,7 +52,11 @@
         console.log(obj);
 
 				$(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
-        localStorage.setItem("novoPlano", JSON.stringify(obj));
+
+        var posts = JSON.parse(localStorage.getItem("posts"));
+        posts["posts"].push(obj);
+
+        localStorage.setItem("posts", JSON.stringify(posts));
 
 				event.preventDefault();
 
@@ -66,8 +75,8 @@
 	</nav>
    <div class="col-md-8 order-md-1 novo-plano">
      <h2 class="mb-3">Adicionar Novo Plano</h2>
-     <form class="needs-validation" novalidate>
-       <input type="text" hidden name="autor" value="pessoaB"></input>
+     <form class="needs-validation">
+       <input class="autor" type="text" hidden name="autor" value=""></input>
        <div class="row">
          <div class="col-md-6 mb-3">
            <label>Título</label>
@@ -87,8 +96,7 @@
        <div class="row">
          <div class="col-md-5 mb-3">
            <label>Matéria</label>
-           <select name="materia" class="custom-select d-block w-100">
-			   <option>Escolha...</option>
+           <select name="materia" class="custom-select d-block w-100" required>
 			   <option value="lpt">Língua Portuguesa</option>
 			   <option value="les">Língua Estrangeira</option>
 			   <option value="mat">Matemática</option>
@@ -103,8 +111,7 @@
          </div>
          <div class="col-md-4 mb-3">
            <label>Série-Alvo</label>
-           <select name="serie" class="custom-select d-block w-100">
-             <option>Escolha...</option>
+           <select name="serie" class="custom-select d-block w-100" required>
              <option value="1">1º ano</option>
              <option value="2">2º ano</option>
       			 <option value="3">3º ano</option>
