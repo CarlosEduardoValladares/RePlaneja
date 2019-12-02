@@ -7,32 +7,89 @@
 	<link rel="stylesheet" href="style.css">
 	<script src="jquery.js"></script>
 	<script>
-		var plano = [];
-	
+
+  var login = localStorage.getItem("login");
+
+  if( login[0] == 0){
+
+    alert("É preciso estar logado para enviar um plano");
+    window.location.href = "signin.html";
+
+  }
+
 		$(function(){
+
+      var cadastros = JSON.parse(localStorage.getItem("cadastros"));
+
+      var start = login.indexOf(",");
+      start++;
+
+      var end = login.length;
+      var email = login.substring(start, end);
+
+      var autor;
+      $.each(cadastros["cadastros"], function(){
+
+        if(this["email"] == email){
+          autor = this["nome"];
+        }
+
+      });
+
+      if( login[0] == 1){
+
+        $(".login-link").html("Log Out");
+        $(".cadastro-link").remove();
+
+      }
+
+      $(".autor").val(autor);
+
 			$("form").submit(function(event){
-			
+
 				var infoArray = $(this).serializeArray();
-				plano.push(Object.assign({}, infoArray));
-				$(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
+        var obj = {};
+
+        $.each(infoArray, function(_, kv){
+
+          if(obj.hasOwnProperty(kv.name)){
+
+            obj[kv.name] = $.makeArray(obj[kv.name]);
+            obj[kv.name].push(kv.name);
+
+          } else {
+
+            obj[kv.name] = kv.value;
+
+          }
+
+        });
+
+        var posts = JSON.parse(localStorage.getItem("posts"));
+        posts["posts"].push(obj);
+
+        localStorage.setItem("posts", JSON.stringify(posts));
+        $(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
+
 				event.preventDefault();
-			
-			});	
+
+			});
 		});
 	</script>
- 
+
  </head>
- <body class="bg-light"> 
+ <body class="bg-light">
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
 		<a class="nav-link font-weight-bold" href="index.html">RePlaneja</a>
 		<div class="collapse navbar-collapse">
-			<a class="nav-link ml-auto" href="signin.html">Login<span class="sr-only">(current)</span></a>
-			<a class="nav-link" href="cadastro.html">Cadastre-se<span class="sr-only">(current)</span></a>
+			<a class="nav-link ml-auto login-link" href="signin.html">Login</a>
+			<a class="nav-link cadastro-link" href="cadastro.html">Cadastre-se</a>
 		</div>
 	</nav>
    <div class="col-md-8 order-md-1 novo-plano">
      <h2 class="mb-3">Adicionar Novo Plano</h2>
-     <form class="needs-validation" novalidate>
+     <form class="needs-validation">
+       <input class="autor" type="text" hidden name="autor" value=""></input>
        <div class="row">
          <div class="col-md-6 mb-3">
            <label>Título</label>
@@ -43,17 +100,16 @@
          <label>Descrição</label>
          <textarea rows="2" name="descricao" type="text" class="form-control" required></textarea>
        </div>
- 
+
        <div class="mb-3">
          <label>Conteúdo</label>
          <textarea rows="8" name="conteudo" type="text" class="form-control" required></textarea>
        </div>
- 
+
        <div class="row">
          <div class="col-md-5 mb-3">
            <label>Matéria</label>
-           <select name="materia" class="custom-select d-block w-100">
-			   <option>Escolha...</option>
+           <select name="materia" class="custom-select d-block w-100" required>
 			   <option value="lpt">Língua Portuguesa</option>
 			   <option value="les">Língua Estrangeira</option>
 			   <option value="mat">Matemática</option>
@@ -68,24 +124,22 @@
          </div>
          <div class="col-md-4 mb-3">
            <label>Série-Alvo</label>
-           <select name="ano" class="custom-select d-block w-100">
-             <option>Escolha...</option>
+           <select name="serie" class="custom-select d-block w-100" required>
              <option value="1">1º ano</option>
              <option value="2">2º ano</option>
-			 <option value="3">3º ano</option>
-			 <option value="4">4º ano</option>
-			 <option value="5">5º ano</option>
-			 <option value="6">6º ano</option>
-			 <option value="7">7º ano</option>
-			 <option value="8">8º ano</option>
-			 <option value="9">9º ano</option>
-			 
+      			 <option value="3">3º ano</option>
+      			 <option value="4">4º ano</option>
+      			 <option value="5">5º ano</option>
+      			 <option value="6">6º ano</option>
+      			 <option value="7">7º ano</option>
+      			 <option value="8">8º ano</option>
+      			 <option value="9">9º ano</option>
            </select>
          </div>
          <hr class="mb-4">
          <div class="botao-enviar">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Enviar</button>
-         </div>    
+         </div>
          </form>
        </div>
     </div>

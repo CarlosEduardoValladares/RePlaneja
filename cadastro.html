@@ -7,32 +7,72 @@
     <link rel="stylesheet" href="style.css">
 	<script src="jquery.js"></script>
 	<script>
-	
-		var cadastro = [];
-	
+
 		$(function(){
+
+      if(localStorage.getItem("login")[0] == 1){
+
+        $(".login-link").html("Log Out");
+        $(".cadastro-link").remove();
+
+      }
+
 			$("form").submit(function(event){
-			
-				var infoArray = $(this).serializeArray();
-				cadastro.push(Object.assign({}, infoArray));
+
+        var infoArray = $(this).serializeArray();
+        var obj = {};
+
+        $.each(infoArray, function(_, kv){
+
+          if(obj.hasOwnProperty(kv.name)){
+
+            obj[kv.name] = $.makeArray(obj[kv.name]);
+            obj[kv.name].push(kv.name);
+
+          } else {
+
+            obj[kv.name] = kv.value;
+
+          }
+
+        });
+
+        console.log(obj);
+				$(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
+
+        var cadastros = JSON.parse(localStorage.getItem("cadastros"));
+        console.log(cadastros);
+        cadastros["cadastros"].push(obj);
+
+        cadastros = JSON.stringify(cadastros);
+
+        localStorage.setItem("cadastros", cadastros);
+
 				event.preventDefault();
-			
-			});	
+
+			});
 		});
-	
+
 	</script>
   </head>
-  <body class="d-flex justify-content-center signin-body">
-    <form class="form-signin border p-5" >
+  <body class="justify-content-center signin-body">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+  		<a class="nav-link font-weight-bold" href="index.html">RePlaneja</a>
+  		<div class="collapse navbar-collapse">
+  			<a class="nav-link ml-auto login-link" href="signin.html">Login</a>
+  			<a class="nav-link cadastro-link" href="cadastro.html">Cadastre-se</a>
+  		</div>
+  	</nav>
+    <form class="form-signin border p-5 ml-auto mr-auto" >
         <h1 class="h3 mb-3 font-weight-normal">Cadastre-se</h1>
         <label class="sr-only">Nome: </label>
-        <input type="text" id="inputName" name="nome" class="form-control mb-1" placeholder="Nome"  autofocus>
+        <input type="text" id="inputName" name="nome" class="form-control mb-1" placeholder="Nome" required  autofocus>
         <label class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" name="email" class="form-control mb-1" placeholder="Endereço de e-mail" >
+        <input type="email" id="inputEmail" name="email" class="form-control mb-1" placeholder="Endereço de e-mail" required>
         <label class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="senha" class="form-control mb-1" placeholder="Senha" >
+        <input type="password" id="inputPassword" name="senha" class="form-control mb-1" placeholder="Senha" required>
         <label class="sr-only">Confirm Password</label>
-        <input type="password" id="inputPasswordConfirm" name="confirmacao" class="form-control mb-1" placeholder="Corfime a senha" >
+        <input type="password" id="inputPasswordConfirm" name="confirmacao" class="form-control mb-1" placeholder="Corfime a senha" required>
         <label class="mt-1">Sou professor de: </label>
         <select class="mb-1" name="area">
           <option value="lpt">Língua Portuguesa</option>
