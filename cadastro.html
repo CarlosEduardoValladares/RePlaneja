@@ -41,14 +41,33 @@
 				$(".novo-plano").html("<div class=\"alert alert-secondary\" role=\"alert\">Plano Enviado</div>");
 
         var cadastros = JSON.parse(localStorage.getItem("cadastros"));
-        console.log(cadastros);
-        cadastros["cadastros"].push(obj);
 
-        cadastros = JSON.stringify(cadastros);
+        var objs = cadastros["cadastros"];
+        var results = [];
+        var toSearch = obj["email"];
 
-        localStorage.setItem("cadastros", cadastros);
-        window.location.href = "index.html";
+        for(var i=0; i<objs.length; i++) {
+          for(key in objs[i]) {
+            if(objs[i][key].indexOf(toSearch)!=-1) {
+              results.push(objs[i]);
+            }
+          }
+        }
 
+        if(results.length != 0){
+
+          alert("Já existe um usuário com este e-mail");
+          window.location.href = "cadastro.html";
+
+        } else {
+
+          cadastros["cadastros"].push(obj);
+          cadastros = JSON.stringify(cadastros);
+
+          localStorage.setItem("cadastros", cadastros);
+          window.location.href = "index.html";
+
+        }
 
 				event.preventDefault();
 
