@@ -102,7 +102,10 @@
 
 					var postsList = JSON.parse(localStorage.getItem("posts"));
 					var lastChar = id_post.charAt((id_post.length)-1);
-					postsList["posts"].splice(lastChar);
+					postsList["posts"].splice(lastChar-1);
+
+					console.log(lastChar-1);
+
 
 					localStorage.setItem("posts", JSON.stringify(postsList));
 
@@ -115,6 +118,7 @@
 			function admin(){
 
 				$(".btn-excluir").show();
+				$(".btn-envio").hide();
 				return("Vendo página como Admin");
 
 			}
@@ -194,10 +198,19 @@
 
 				if(localStorage.getItem("login")[0] == 1){
 
-	        $(".login-link").html("Log Out");
-					$(".cadastro-link").remove();
+					$(".login-link").html("Log Out");
+							$(".cadastro-link").remove();
 
-	      }
+				}
+
+				var login = localStorage.getItem("login");
+				var cadastros = JSON.parse(localStorage.getItem("cadastros"));
+
+				var start = login.indexOf(",");
+				start++;
+
+				var end = login.length;
+				var email = login.substring(start, end);
 
 				var posts = []
 				var postsList = JSON.parse(localStorage.getItem("posts"));
@@ -273,6 +286,12 @@
 
 				});
 
+				if(email.substring(0, 5) == "admin"){
+
+				admin();
+
+				}
+
 			});
 
 		</script>
@@ -293,7 +312,7 @@
 		<div class="container bg-dark mt-5 pt-1 pb-1 border rounded">
 			<div class="row mt-1">
 				<div class="col-sm-6">
-					<a href="adicionar-plano.html"><button class="btn btn-success">+ Adicionar Novo Plano</button></a>
+					<a href="adicionar-plano.html"><button class="btn btn-success btn-envio">+ Adicionar Novo Plano</button></a>
 				</div>
 				<div class="col-sm-6 d-flex justify-content-end">
 					<label class=" d-flex align-items-end">Ordenar por:</label>
@@ -301,7 +320,7 @@
 					<button class="btn btn-primary ml-sm-1" onClick="orderByMostRecent();">Mais recentes</button>
 				</div>
 			</div>
-			<div id="posts">
+			<div id="posts" class=" mb-5">
 
 			</div>
 		</div>

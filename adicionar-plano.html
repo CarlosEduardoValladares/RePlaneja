@@ -43,6 +43,13 @@
 
       }
 
+      if(email.substring(0, 5) == "admin"){
+
+        alert("É preciso estar logado como professor para enviar um plano");
+        window.location.href = "index.html";
+
+      }
+
       $(".autor").val(autor);
 
 			$("form").submit(function(event){
