@@ -64,6 +64,11 @@
           alert("Não é possível cadastrar este formato de e-mail");
           window.location.href = "cadastro.html";
 
+        } else if(obj["senha"] != obj["confirmacao"]){
+
+          alert("As senhas digitadas não conferem");
+          window.location.href = "cadastro.html"
+
         } else {
 
           cadastros["cadastros"].push(obj);
