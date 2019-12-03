@@ -149,13 +149,13 @@
 					cpyListPosts.push(listaPosts[i].innerHTML);
 				}
 
-				var iterador = 0;
+				var iterador = size-1;
 				$("#posts").children(".postagem").each(function (){
 
 					var post = $(this);
 					var index = indexMap[iterador][1];
 					post.html(cpyListPosts[index]);
-					iterador++;
+					iterador--;
 
 				});
 
